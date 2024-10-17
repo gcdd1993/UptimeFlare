@@ -7,7 +7,7 @@ const pageConfig = {
 
 const workerConfig = {
   // Write KV at most every 3 minutes unless the status changed
-  kvWriteCooldownMinutes: 3,
+  kvWriteCooldownMinutes: 1,
   // Enable HTTP Basic auth for status page & API by uncommenting the line below, format `<USERNAME>:<PASSWORD>`
   // passwordProtection: 'username:password',
   // Define all your monitors here
@@ -17,6 +17,46 @@ const workerConfig = {
       name: '帆软论坛',
       method: 'GET',
       target: 'https://bbs.fanruan.com/topic',
+      expectedCodes: [200],
+      timeout: 5000,
+    },
+    {
+      id: '2',
+      name: '服务平台',
+      method: 'GET',
+      target: 'https://service.fanruan.com',
+      expectedCodes: [200],
+      timeout: 5000,
+    },
+    {
+      id: '3',
+      name: '帆软通行证',
+      method: 'GET',
+      target: 'https://fanruanclub.com/actuator/health/liveness',
+      expectedCodes: [200],
+      timeout: 5000,
+    },
+    {
+      id: '4',
+      name: '我的帆软首页',
+      method: 'GET',
+      target: 'https://home.fanruan.com',
+      expectedCodes: [200],
+      timeout: 5000,
+    },
+    {
+      id: '5',
+      name: '社区学院',
+      method: 'GET',
+      target: 'https://edu.fanruan.com/',
+      expectedCodes: [200],
+      timeout: 5000,
+    },
+    {
+      id: '6',
+      name: '文件预览',
+      method: 'GET',
+      target: 'https://knowhow.fanruan.com/preview/',
       expectedCodes: [200],
       timeout: 5000,
     },
